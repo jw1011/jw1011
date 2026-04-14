@@ -1,56 +1,56 @@
-name: Update TryHackMe Badge
+# name: Update TryHackMe Badge
 
-on:
-  schedule:
-    - cron: "0 */12 * * *" # 12시간마다 실행
-  workflow_dispatch:      # 수동 실행 가능
+# on:
+#   schedule:
+#     - cron: "0 */12 * * *" # 12시간마다 실행
+#   workflow_dispatch:      # 수동 실행 가능
 
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write # 푸시 권한 명시
+# jobs:
+#   update:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write # 푸시 권한 명시
 
-    steps:
-      - uses: actions/checkout@v4
+#     steps:
+#       - uses: actions/checkout@v4
 
-      - name: Fetch THM Badge
-        run: |
-          mkdir -p assets
+#       - name: Fetch THM Badge
+#         run: |
+#           mkdir -p assets
       
-          AVATAR_URL=$(curl -s -A "Mozilla/5.0" https://tryhackme.com/p/JUWON \
-          | grep -o 'https://[^"]*\(profile\|avatar\)[^"]*\.png' \
-          | head -n 1)
+#           AVATAR_URL=$(curl -s -A "Mozilla/5.0" https://tryhackme.com/p/JUWON \
+#           | grep -o 'https://[^"]*\(profile\|avatar\)[^"]*\.png' \
+#           | head -n 1)
       
-          if [ -z "$AVATAR_URL" ]; then
-            echo "❌ Avatar URL not found"
-            exit 1
-          fi
+#           if [ -z "$AVATAR_URL" ]; then
+#             echo "❌ Avatar URL not found"
+#             exit 1
+#           fi
       
-          echo "Using: $AVATAR_URL"
+#           echo "Using: $AVATAR_URL"
       
-          curl -L "$AVATAR_URL" -o assets/thm.png
+#           curl -L "$AVATAR_URL" -o assets/thm.png
       
-          # 이미지 검증
-          if file assets/thm.png | grep -q "HTML"; then
-            echo "❌ HTML downloaded instead of image"
-            exit 1
-          fi
+#           # 이미지 검증
+#           if file assets/thm.png | grep -q "HTML"; then
+#             echo "❌ HTML downloaded instead of image"
+#             exit 1
+#           fi
       
-          if [ ! -s assets/thm.png ]; then
-            echo "❌ Empty image file"
-            exit 1
-          fi
+#           if [ ! -s assets/thm.png ]; then
+#             echo "❌ Empty image file"
+#             exit 1
+#           fi
           
-      - name: Commit and Push
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/thm.png
-          # 변경사항이 있을 때만 커밋
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update TryHackMe badge stats"
-            git push
-          else
-            echo "No changes in badge image."
-          fi
+#       - name: Commit and Push
+#         run: |
+#           git config --global user.name "github-actions[bot]"
+#           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#           git add assets/thm.png
+#           # 변경사항이 있을 때만 커밋
+#           if ! git diff --cached --quiet; then
+#             git commit -m "chore: update TryHackMe badge stats"
+#             git push
+#           else
+#             echo "No changes in badge image."
+#           fi
