@@ -15,7 +15,10 @@ jobs:
       - name: Update THM badge
         run: |
           mkdir -p assets
-          curl -o assets/thm.png https://tryhackme-badges.s3.amazonaws.com/JUWON.png
+          curl -s https://tryhackme.com/p/JUWON \
+          | grep -o 'https://.*\.png' \
+          | head -n 1 \
+          | xargs curl -o assets/thm.png
 
       - name: Commit
         run: |
