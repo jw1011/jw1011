@@ -12,13 +12,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Update THM badge
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install jq -y
+
+      - name: Fetch THM avatar via API
         run: |
           mkdir -p assets
-          curl -s https://tryhackme.com/p/JUWON \
-          | grep -o 'https://.*\.png' \
-          | head -n 1 \
-          | xargs curl -o assets/thm.png
+          AVATAR_URL=$(curl -s https://tryhackme.com/api/user/JUWON | jq -r '.user.avatar')
+
+          echo "Avatar URL: $AVATAR_URL"
+
+          if [ "$AVATAR_URL" = "null" ] || [ -z "$AVATAR_URL" ]; then
+            echo "Failed to fetch avatar"
+            exit 1
+          fi
+
+          curl -L "$AVATAR_URL" -o assets/thm.png
 
       - name: Commit
         run: |
