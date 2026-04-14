@@ -10,24 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install jq -y
 
-      - name: Fetch THM avatar via API
+      - name: Fetch THM avatar (robust)
         run: |
           mkdir -p assets
+
           AVATAR_URL=$(curl -s https://tryhackme.com/api/user/JUWON | jq -r '.user.avatar')
 
-          echo "Avatar URL: $AVATAR_URL"
-
           if [ "$AVATAR_URL" = "null" ] || [ -z "$AVATAR_URL" ]; then
-            echo "Failed to fetch avatar"
+            echo "API failed → fallback to scraping"
+            AVATAR_URL=$(curl -s https://tryhackme.com/p/JUWON \
+            | grep -o 'https://[^"]*\.png' \
+            | head -n 1)
+          fi
+
+          if [ -z "$AVATAR_URL" ]; then
+            echo "❌ Failed to get avatar URL"
             exit 1
           fi
 
+          echo "Using: $AVATAR_URL"
+
           curl -L "$AVATAR_URL" -o assets/thm.png
+
+          if [ ! -s assets/thm.png ]; then
+            echo "❌ Image download failed"
+            exit 1
+          fi
 
       - name: Commit
         run: |
