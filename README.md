@@ -16,9 +16,9 @@
 
 | GitHub Stats | TryHackMe Profile |
 | :---: | :---: |
-| ![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011&show_icons=true&theme=radical) | [![TryHackMe Badge](https://tryhackme-badges.s3.amazonaws.com/JUWON.png)](https://tryhackme.com/p/JUWON) |
+| ![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011&show_icons=true&theme=radical) | [TryHackMe Profile](https://tryhackme.com/p/JUWON) |
 
-### 🔍 TryHackMe Activity (Auto-updated)
+### 🔍 TryHackMe Activity
 ![THM Detail](https://raw.githubusercontent.com/jw1011/jw1011/main/assets/thm.png)
 
 ---
