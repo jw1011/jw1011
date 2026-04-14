@@ -19,7 +19,7 @@
 | ![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011&show_icons=true&theme=radical) | [TryHackMe Profile](https://tryhackme.com/p/JUWON) |
 
 ### 🔍 TryHackMe Activity
-![THM Detail](https://raw.githubusercontent.com/jw1011/jw1011/main/assets/thm.png)
+![THM Detail](https://raw.githubusercontent.com/jw1011/jw1011/main/assets/thm.png?cache=1)
 
 ---
 
