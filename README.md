@@ -14,17 +14,14 @@
 
 ## 📊 My Security Journey
 
-| GitHub Stats | TryHackMe Profile |
-| :---: | :---: |
-| ![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011&show_icons=true&theme=radical) | [TryHackMe Profile](https://tryhackme.com/p/JUWON) |
+| TryHackMe Profile |
+| :---: |
+| [TryHackMe Profile](https://tryhackme.com/p/JUWON) |
 
-### 🔍 TryHackMe Activity
-![THM Detail](https://raw.githubusercontent.com/jw1011/jw1011/main/assets/thm.png?cache=1)
-
----
 
 ## 📁 Projects
 - **Juice Shop Attack & Detection Lab**: SOC automation with Wazuh & LLM.
 - **Infrastructure Security**: DNS/Web/DB Protection Project.
+- **ESTSOFT [8기] 인프라 보안 부트캠프 https://www.notion.so/oreumi/2b5ebaa8982b8021bf65c6ce1abc5237
 
 ![visitors](https://komarev.com/ghpvc/?username=jw1011&color=blue&style=flat-square&label=VISITORS)
