@@ -13,7 +13,7 @@
 - Juice Shop Attack & Detection Lab
 
 ## Stats
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011)
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=jw1011&show_icons=true)
 
 ## TryHackMe
 ![THM](https://raw.githubusercontent.com/jw1011/jw1011/main/assets/thm.png)
