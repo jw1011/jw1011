@@ -17,10 +17,30 @@ jobs:
       - name: Fetch THM Badge
         run: |
           mkdir -p assets
-          # 유저네임 JUWON의 배지 이미지를 직접 가져옵니다.
-          # API가 불안정할 경우를 대비해 공식 배지 URL을 사용합니다.
-          curl -L "https://tryhackme-badges.s3.amazonaws.com/JUWON.png" -o assets/thm.png
-          curl -L "https://avatars.githubusercontent.com/u/9919?s=200&v=4" -o assets/thm.png
+      
+          AVATAR_URL=$(curl -s -A "Mozilla/5.0" https://tryhackme.com/p/JUWON \
+          | grep -o 'https://[^"]*\(profile\|avatar\)[^"]*\.png' \
+          | head -n 1)
+      
+          if [ -z "$AVATAR_URL" ]; then
+            echo "❌ Avatar URL not found"
+            exit 1
+          fi
+      
+          echo "Using: $AVATAR_URL"
+      
+          curl -L "$AVATAR_URL" -o assets/thm.png
+      
+          # 이미지 검증
+          if file assets/thm.png | grep -q "HTML"; then
+            echo "❌ HTML downloaded instead of image"
+            exit 1
+          fi
+      
+          if [ ! -s assets/thm.png ]; then
+            echo "❌ Empty image file"
+            exit 1
+          fi
           
       - name: Commit and Push
         run: |
